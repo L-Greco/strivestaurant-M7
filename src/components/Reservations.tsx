@@ -3,10 +3,11 @@ import { Container, Col, Row, ListGroup } from 'react-bootstrap'
 import Loading from './Loading'
 import Error from './Error'
 import ReservationForm from './ReservationForm'
+import { ReservationsInterface } from '../types/interfaces'
 
 const Reservations = () => {
 
-    const [reservations, setReservations] = useState([])
+    const [reservations, setReservations] = useState<ReservationsInterface[]>([])
     const [isLoading, setIsLoading] = useState(true)
     const [isError, setIsError] = useState(false)
 
@@ -16,6 +17,7 @@ const Reservations = () => {
                 let response = await fetch('https://striveschool.herokuapp.com/api/reservation')
                 let newReservations = await response.json()
                 setReservations(newReservations)
+                console.log(newReservations)
                 setIsLoading(false)
             } catch (error) {
                 console.log(error)
